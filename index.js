@@ -1,19 +1,23 @@
-const express = require('express')
-const path = require('path')
+const express = require('express'),
+ cors = require('cors'),
+ bodyparser = require('body-parser'),
+ app = express()
 
-var client_num = 1
-var args = process.argv.slice(2)
+app.use(cors())
+app.use(bodyparser.json())
 
-const app = express()
+var fields = ["First","Second","Third"]
 
-app.use(express.static(path.join(__dirname, "/client/build")))
-
-app.get('/', (req,res) => {
-  res.sendFile(path.join(__dirname, '/client/build/index.html'))
-  console.log(`App served to user number: ${client_num}`)
-  client_num++
+app.listen(5000, () => {
+  console.log('Backend Server running on port 5000');
 })
 
-app.listen(5000||args[0], () => {
-  console.log(`App running on port ${args[0]||5000}`)
+app.get('/get/games', (req,res) => {
+  res.send({game: fields});
+  console.log("App Served to " + (req.connection.remoteAddress||req.headers['x-forwrded-for']))
+})
+
+app.post('/get/games', (req,res) => {
+  arr.push(req.body)
+  res.send('Data posted!')
 })
