@@ -4,7 +4,7 @@ const Header = (props) => {
   return(
     <>
       <div>Stand-in header</div>
-      {props.children}
+      <ul>{props.children}</ul>
     </>
   )
 }
