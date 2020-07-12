@@ -1,0 +1,31 @@
+{
+  "name": "pyckup",
+  "version": "1.0.0",
+  "description": "Pickup anywhere anytime",
+  "main": "index.js",
+  "scripts": {
+    "start": "(cd client && npm run build) && nodemon index.js",
+    "start-server": "nodemon index.js",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanbs183/pyckup.git"
+  },
+  "author": "Ryan Sullivan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanbs183/pyckup/issues"
+  },
+  "homepage": "https://github.com/ryanbs183/pyckup#readme",
+  "dependencies": {
+    "@react-google-maps/api": "^1.9.7",
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "forever": "^3.0.0",
+    "nodemon": "^2.0.4",
+    "path": "^0.12.7"
+  }
+}
