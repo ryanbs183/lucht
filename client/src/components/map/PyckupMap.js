@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Map, GoogleApiWrapper, Marker, Polygon } from 'google-maps-react'
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 import axios from 'axios'
 
 import SideMenu from './SideMenu'
@@ -15,54 +15,53 @@ const fieldIcon ={
 const PyckupMap = (props) => {
   const [userLoc, setUserLoc] = useState(null)
   const [menuVis, setVis] = useState(false)
-
-  const fetchPlaces = async (mapProps, map) => {
-    await getUserPos()
-    console.log(userLoc)
-    const {google} = mapProps
-    const service = new google.maps.places.PlacesService(map)
-    const request = {
-      location: userLoc,
-      radius: 8000,
-      openNow: true,
-      name: ['soccer']
-    }
-
-    service.nearbySearch(request, (obj) => {
-      getUserPos()
-      console.log(obj)
+  const getUserLoc = (options) => {
+    console.log('Runnning getUserLoc')
+    return new Promise((res, err) => {
+      navigator.geolocation.getCurrentPosition(res, err, options);
     })
   }
 
-  const toggleMenu = () => {
-    setVis(!menuVis)
-    console.log(menuVis)
-  }
-
-  const getGames = async (e) => {
-    try{
-      //return await axios.get(`http://localhost:5000/get/games/${e.target.id}`)
-      axios
-        .get(`http://localhost:5000/get/games`)
-        .then((res) => {
-          console.log(res.data.game)
+  const fetchPlaces = (mapProps, map) => {
+    console.log('Running fetchPlaces')
+    getUserLoc()
+      .then((res) => {
+        console.log('Setting userLoc')
+        let loc = {
+          lat: res.coords.latitude,
+          lng: res.coords.longitude
+        }
+        setUserLoc(loc)
+        console.log('Getting nearby games')
+        const {google} = mapProps
+        const request = {
+          location: loc,
+          radius: 8000,
+          openNow: true,
+          name: ['soccer']
+        }
+        const service = new google.maps.places.PlacesService(map)
+        service.nearbySearch(request, (obj) => {
+          console.log(obj)
         })
-        toggleMenu();
-    }catch(e){
-      alert('Error')
-      console.error(e)
-    }
+      })
+      .catch((err) => {
+        console.log("There was an error in fetchPlaces" + err)
+      })
   }
 
-  const getUserPos = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setUserLoc({lat : position.coords.latitude, lng : position.coords.longitude})
-    })
+  const toggleMenu = (e) => {
+    getGames(e)
+      .then((res) => {
+        setVis(!menuVis)
+        console.log(menuVis)
+        console.log(res)
+      })
   }
 
-  useEffect(() => {
-      getUserPos()
-    }, [])
+  const getGames = (e) => {
+      return axios.get(`http://localhost:5000/get/games`)
+  }
 
    return (
      <>
@@ -88,7 +87,7 @@ const PyckupMap = (props) => {
          >
           <Marker
             id="Field 1"
-            onClick={getGames}
+            onClick={toggleMenu}
             name={'Kenyatta International Convention Centre'}
             position={userLoc}
             icon={userIcon}
