@@ -1,17 +1,33 @@
 import React from 'react'
+import colors from '../colors'
 
 const SideMenu = (props) => {
   return(
     <div
       className="side-menu"
       style={{height: '100%',
-              width: '20%',
-              visibility: props.vis ? 'visible' : 'hidden',
+              width: props.vis ? '20%': '0%',
+              marginRight: props.vis ? '0%' : '-20%',
               right: '0px',
-              position: 'absolute'
+              zIndex: 1,
+              backgroundColor: colors.white,
+              position: 'absolute',
+              padding: '10px',
+
             }}
     >
-      Stand in for side menu
+      <div
+        style={{
+          backgroundColor: colors.green,
+          color: colors.white,
+          borderRadius: '10px',
+          textAlign: 'center',
+          padding: '10px',
+          height: '20px',
+          width: '160px',
+          margin: 'auto'
+        }}
+      >Schedule Game</div>
     </div>
   )
 }

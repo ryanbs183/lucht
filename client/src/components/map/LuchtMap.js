@@ -12,9 +12,10 @@ const fieldIcon ={
   url:'https://img.icons8.com/material-rounded/24/000000/football2.png'
 }
 
-const PyckupMap = (props) => {
+const LuchtMap = (props) => {
   const [userLoc, setUserLoc] = useState(null)
   const [menuVis, setVis] = useState(false)
+
   const getUserLoc = (options) => {
     console.log('Runnning getUserLoc')
     return new Promise((res, err) => {
@@ -24,7 +25,7 @@ const PyckupMap = (props) => {
 
   const fetchPlaces = (mapProps, map) => {
     console.log('Running fetchPlaces')
-    getUserLoc()
+    getUserLoc({enableHighAccuracy: true})
       .then((res) => {
         console.log('Setting userLoc')
         let loc = {
@@ -69,7 +70,7 @@ const PyckupMap = (props) => {
          <Map
            google={props.google}
            zoom={13}
-           style={{width: '80%', height: '93%'}}
+           style={{width: /*menuVis ? '80%' :*/ '100%', height: '93%', zIndex: 0}}
            styles={mapStyle}
            center={userLoc}
            onReady={fetchPlaces}
@@ -103,4 +104,4 @@ const PyckupMap = (props) => {
 
 export default GoogleApiWrapper({
   apiKey: apiKey
-})(PyckupMap)
+})(LuchtMap)

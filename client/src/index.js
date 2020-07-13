@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Pyckup from './Pyckup';
+import Lucht from './Lucht';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Pyckup />
+    <Lucht />
   </React.StrictMode>,
   document.getElementById('root')
 );

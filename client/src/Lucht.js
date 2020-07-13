@@ -3,9 +3,9 @@ import Home from './components/home/Home'
 import About from './components/abt/About'
 import GitHub from './components/git/GitHub'
 import Header from './components/head/Header'
-import PyckupMap from './components/map/PyckupMap'
+import LuchtMap from './components/map/LuchtMap'
 
-const Pyckup = () => {
+const Lucht = () => {
   return (
     <div className="Pyckup">
       <Header>
@@ -13,9 +13,9 @@ const Pyckup = () => {
         <About />
         <GitHub />
       </Header>
-      <PyckupMap />
+      <LuchtMap />
     </div>
   );
 }
 
-export default Pyckup;
+export default Lucht;
