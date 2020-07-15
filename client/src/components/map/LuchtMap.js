@@ -16,22 +16,24 @@ const fieldIcon ={
 }
 
 const LuchtMap = (props) => {
-  //state variables
+
   const [userLoc, setUserLoc] = useState(null)  //stores user geolocation
   const [menuVis, setVis] = useState(false)     //stores as to whether the slideout menu should be visible
   const [fields, setFields] = useState(null)    //stores the field data
   const [games, setGames] = useState(null)      //stores game data
 
-  //functions called to acquire data
+  //returns a Promise to get the user's geolocation
   const getUserLoc = (options) => {
     console.log('Runnning getUserLoc')
     return new Promise((res, err) => {
       navigator.geolocation.getCurrentPosition(res, err, options);
     })
-  }           //returns a Promise to get the user's geolocation
+  }
+  //returns a Promise to send an AJAX request to the Express server to GET the relevant game data
   const getGames = (e) => {
       return axios.get(`http://localhost:5000/get/games`)
-  }                   //returns a Promise to send an AJAX request to the Express server to GET the relevant game data
+  }
+  //sets the menuVis to true and sorts the game data to only show games at each field
   const openMenu = (e) => {
     getGames()
      .then((res) => {
@@ -45,7 +47,8 @@ const LuchtMap = (props) => {
        ))
      })
      setVis(true)
-  }                   //sets the menuVis to true and sorts the game data to only show games at each field
+  }
+  //gets the fields near the user and sets the fields variable to that data
   const fetchPlaces = (mapProps, map) => {
     console.log('Running fetchPlaces')
     getUserLoc({enableHighAccuracy: true, timeout: 10000})
@@ -80,7 +83,7 @@ const LuchtMap = (props) => {
       .catch((err) => {
         console.log(err)
       })
-  }    //gets the fields near the user and sets the fields variable to that data
+  }
 
    return (
      <div style={{height: '93vh', width: '100%'}}>
