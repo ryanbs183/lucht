@@ -1,6 +1,6 @@
 const mapStyle = [
     {
-        "featureType": "all",
+        "featureType": "administrative",
         "elementType": "labels",
         "stylers": [
             {
@@ -10,91 +10,19 @@ const mapStyle = [
     },
     {
         "featureType": "administrative",
-        "elementType": "all",
+        "elementType": "labels.text.fill",
         "stylers": [
             {
-                "visibility": "on"
-            },
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 20
-            }
-        ]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
+                "color": "#444444"
             }
         ]
     },
     {
         "featureType": "landscape",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.man_made",
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "simplified"
-            },
-            {
-                "saturation": -60
-            },
-            {
-                "lightness": 10
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.man_made",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#f7f7f7"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.man_made",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.natural",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            },
-            {
-                "saturation": -60
-            },
-            {
-                "lightness": 60
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.natural",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
+                "color": "#e9e6de"
             }
         ]
     },
@@ -103,16 +31,40 @@ const mapStyle = [
         "elementType": "all",
         "stylers": [
             {
-                "saturation": -100
-            },
-            {
-                "lightness": 60
+                "visibility": "simplified"
             }
         ]
     },
     {
-        "featureType": "poi",
-        "elementType": "labels",
+        "featureType": "poi.attraction",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.business",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.government",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.medical",
+        "elementType": "all",
         "stylers": [
             {
                 "visibility": "off"
@@ -121,10 +73,37 @@ const mapStyle = [
     },
     {
         "featureType": "poi.park",
-        "elementType": "geometry.fill",
+        "elementType": "all",
         "stylers": [
             {
-                "color": "#d5eab6"
+                "color": "#95da59"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.place_of_worship",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.school",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.sports_complex",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
             }
         ]
     },
@@ -133,13 +112,19 @@ const mapStyle = [
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "off"
-            },
-            {
                 "saturation": -100
             },
             {
-                "lightness": 40
+                "lightness": 45
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
             }
         ]
     },
@@ -148,16 +133,7 @@ const mapStyle = [
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#d1dae3"
+                "visibility": "simplified"
             }
         ]
     },
@@ -171,26 +147,26 @@ const mapStyle = [
         ]
     },
     {
+        "featureType": "road.highway.controlled_access",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
         "featureType": "road.arterial",
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "on"
+                "visibility": "simplified"
             }
         ]
     },
     {
         "featureType": "road.arterial",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#d1dae3"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "labels",
+        "elementType": "labels.icon",
         "stylers": [
             {
                 "visibility": "off"
@@ -202,7 +178,7 @@ const mapStyle = [
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "off"
+                "visibility": "simplified"
             }
         ]
     },
@@ -221,12 +197,6 @@ const mapStyle = [
         "stylers": [
             {
                 "visibility": "off"
-            },
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 60
             }
         ]
     },
@@ -235,31 +205,10 @@ const mapStyle = [
         "elementType": "all",
         "stylers": [
             {
+                "color": "#7ddde6"
+            },
+            {
                 "visibility": "on"
-            },
-            {
-                "saturation": -10
-            },
-            {
-                "lightness": 30
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#b5cae5"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
             }
         ]
     }
