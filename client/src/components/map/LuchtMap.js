@@ -3,15 +3,15 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 import { CSSTransition } from 'react-transition-group'
 import axios from 'axios'
 
+import GameList from './GameList'
 import SideMenu from './SideMenu'
 import mapStyle from './style/mapstyle'
-import './style/SideMenu.css'
 
 const apiKey = 'AIzaSyAJwmnP7sseiJooVbrc6z6APY24zSTPK2w'
 const userIcon = {
   url: 'https://img.icons8.com/material-rounded/24/000000/football.png'
 }
-const fieldIcon ={
+const fieldIcon = {
   url:'https://img.icons8.com/material-rounded/24/000000/football2.png'
 }
 
@@ -31,22 +31,30 @@ const LuchtMap = (props) => {
   }
   //returns a Promise to send an AJAX request to the Express server to GET the relevant game data
   const getGames = (e) => {
-      return axios.get(`http://localhost:5000/get/games`)
+      return axios.get(`http://localhost:5000/get/games/${e.id}`)
   }
   //sets the menuVis to true and sorts the game data to only show games at each field
   const openMenu = (e) => {
-    getGames()
+    if(menuVis === true){
+      console.log('Wipe Menu')
+      setVis(false)
+      setTimeout(() => {
+        setVis(true)
+      }, 500)
+    }
+    else if(menuVis === false){
+      console.log('No wipe')
+      setVis(true)
+    }
+    getGames(e)
      .then((res) => {
        setGames(res.data.map((item) => (
-           ((item.fieldID === e.id)&&(<div>
-            Location: {`${item.location}`} <br />
-            Time: {item.time} <br />
-            Id: {item.fieldID} <br />
-           </div>))
+           (<li>
+            Id: {item.fieldID}
+           </li>)
          )
        ))
      })
-     setVis(true)
   }
   //gets the fields near the user and sets the fields variable to that data
   const fetchPlaces = (mapProps, map) => {
@@ -126,10 +134,12 @@ const LuchtMap = (props) => {
        >
        <SideMenu
         vis={menuVis}>
-        <div className='close-button' onClick={(e)=>{setVis(false)}}> close </div>
-        <div className="menu-button">Schedule Game</div>
-        <div className="menu-button">Join Game</div>
-        {games}
+        <div className='close-button' onClick={(e)=>{setVis(false)}}>X</div>
+        <div className="menu-button" role="button">Schedule Game</div>
+        <div className="menu-button" role="button">Join Game</div>
+        <GameList>
+          {games}
+        </GameList>
        </SideMenu>
        </CSSTransition>
     </div>

@@ -2,10 +2,10 @@ import React from 'react'
 
 const Header = (props) => {
   return(
-    <>
+    <div className='header'>
       <div>Stand-in header</div>
-      <ul>{props.children}</ul>
-    </>
+      <ul>{props.children.join(' ')}</ul>
+    </div>
   )
 }
 

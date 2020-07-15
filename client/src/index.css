@@ -11,3 +11,109 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.side-menu {
+  position: absolute;
+  right: 0px;
+  width: 12%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  padding: 1px;
+  background-color: #FFFAF1;
+}
+
+.side-menu-enter, .side-menu-appear {
+  position: absolute;
+  right: 0px;
+  width: 0%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  padding: 1px;
+  background-color: #FFFAF1;
+}
+
+.side-menu-enter-active, .side-menu-appear-active {
+  width: 12%;
+  transition: width 400ms;
+}
+
+.side-menu-exit {
+  position: absolute;
+  right: 0px;
+  width: 12%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  padding: 1px;
+  background-color: #FFFAF1;
+}
+
+.side-menu-exit-active {
+  width: 0%;
+  right: -40px;
+  transition: all 400ms;
+}
+
+.menu-button {
+  background-color: #66983C;
+  color: #F9FCE6;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  height: 20px;
+  width: 160px;
+  border: 2px solid #66983C;
+}
+
+.menu-button:hover {
+  background-color: #F9FCE6;
+  color: #66983C;
+  transition: all 400ms;
+}
+
+.close-button {
+  text-align: right;
+  margin: 2px;
+}
+/*
+.game-list {
+  margin: 10px;
+  height: 10%;
+  background-color: #6C809A;
+  border-radius: 10px;
+  overflow-y: scroll;
+  word-wrap: break-word;
+}
+
+.game-list-enter, .game-list-appear {
+  margin: 10px;
+  height: 0%;
+  background-color: #6C809A;
+  border-radius: 10px;
+  overflow-y: scroll;
+  word-wrap: break-word;
+}
+
+.game-list-enter-active, .game-list-appear-active {
+  height: 10%;
+  transition: height 400ms;
+}
+
+.game-list-exit {
+  margin: 10px;
+  height: 10%;
+  background-color: #6C809A;
+  border-radius: 10px;
+  overflow-y: scroll;
+  word-wrap: break-word;
+}
+
+.game-list-exit-active {
+  height: 0%;
+  transition: all 400ms;
+}*/
