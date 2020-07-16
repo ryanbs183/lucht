@@ -2,9 +2,9 @@ import React from 'react'
 
 const Home = () => {
   return(
-    <>
-      Stand in Home
-    </>
+    <li class="header-link">
+      <h2><a href="#">Home</a></h2>
+    </li>
   )
 }
 

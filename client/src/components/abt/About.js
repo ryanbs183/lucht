@@ -2,9 +2,9 @@ import React from 'react'
 
 const About = () => {
   return(
-    <>
-      Stand in about section
-    </>
+    <li className="header-link">
+      <h2><a href="#">About</a></h2>
+    </li>
   )
 }
 

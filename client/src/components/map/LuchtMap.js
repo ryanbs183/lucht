@@ -94,7 +94,7 @@ const LuchtMap = (props) => {
   }
 
    return (
-     <div style={{height: '93vh', width: '100%'}}>
+     <div style={{height: '90vh', width: '100%'}}>
        <div>
          <Map
            google={props.google}
@@ -134,9 +134,9 @@ const LuchtMap = (props) => {
        >
        <SideMenu
         vis={menuVis}>
-        <div className='close-button' onClick={(e)=>{setVis(false)}}>X</div>
-        <div className="menu-button" role="button">Schedule Game</div>
-        <div className="menu-button" role="button">Join Game</div>
+        <div className='close-button' onClick={(e)=>{setVis(false)}}><b>X</b></div>
+        <div className="menu-button" role="button"><b>Schedule Game</b></div>
+        <div className="menu-button" role="button"><b>Join Game</b></div>
         <GameList>
           {games}
         </GameList>

@@ -57,28 +57,93 @@ code {
 }
 
 .menu-button {
-  background-color: #66983C;
-  color: #F9FCE6;
+  background-color: #306304;
+  color: #FFFAF1;
   border-radius: 10px;
   text-align: center;
   padding: 10px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 5px;
-  height: 20px;
-  width: 160px;
-  border: 2px solid #66983C;
+  height: 2%;
+  width: 86%;
+  border: 2px solid #306304;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 .menu-button:hover {
-  background-color: #F9FCE6;
-  color: #66983C;
+  background-color: #FFFAF1;
+  color: #306304;
   transition: all 400ms;
 }
 
 .close-button {
   text-align: right;
   margin: 2px;
+}
+
+.header-logo {
+  float: left;
+}
+
+.header-link-list {
+  float: right;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.banner {
+  background-color: #FFFAF1;
+}
+
+.header {
+  width: 90%;
+  margin: auto;
+  color: #306304;
+}
+
+.header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.header-link {
+  display: inline-block;
+  margin: 0 35px;
+  padding-top: 0px;
+}
+
+.header-link a {
+/*#444;*/
+  color: #306304;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.header-link a:hover {
+  color: #1f4201;
+  transition: color 200ms;
+}
+
+.header-link a::before {
+  height: 5px;
+  width: 0%;
+  display: block;
+  content: '';
+  background-color: #306304;
+}
+
+.header-link a:hover::before {
+  background-color: #1f4201;
+  width: 100%;
+  transition: all 200ms;
+}
+
+.close-button {
+
 }
 /*
 .game-list {
