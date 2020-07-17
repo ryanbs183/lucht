@@ -8,7 +8,7 @@ import SideMenu from './SideMenu'
 import PopUpMenu from './PopUpMenu'
 import mapStyle from './style/mapstyle'
 
-import apiKeys from './APIKeys/api_keys'
+import apiKeys from './.APIKeys/api_keys'
 const userIcon = {
   url: 'https://img.icons8.com/material-rounded/24/000000/football.png'
 }
