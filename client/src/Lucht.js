@@ -19,16 +19,8 @@ const Lucht = () => {
       <LuchtMap
         apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
         setPopVis={setPopVis}
+        popVis={popupVis}
       />
-      <CSSTransition
-        in={popupVis}
-        timeout={400}
-        classNames="popup-menu"
-        unmountOnExit
-        appear={true}
-      >
-        <PopUpMenu/>
-      </CSSTransition>
       <CSSTransition
         in={popupVis}
         timeout={400}

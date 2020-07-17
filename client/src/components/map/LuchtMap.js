@@ -8,6 +8,7 @@ import SideMenu from './SideMenu'
 import PopUpMenu from './PopUpMenu'
 import mapStyle from './style/mapstyle'
 
+import apiKeys from './APIKeys/api_keys'
 const userIcon = {
   url: 'https://img.icons8.com/material-rounded/24/000000/football.png'
 }
@@ -129,6 +130,15 @@ const LuchtMap = (props) => {
            />
            {fields}
          </Map>
+         <CSSTransition
+           in={props.popVis}
+           timeout={400}
+           classNames="popup-menu"
+           unmountOnExit
+           appear={true}
+         >
+           <PopUpMenu/>
+         </CSSTransition>
        </div>
        <CSSTransition
          in={menuVis}
@@ -139,7 +149,7 @@ const LuchtMap = (props) => {
        >
        <SideMenu
         vis={menuVis}>
-        <div className='close-button' onClick={(e)=>{setVis(false)}}><b>X</b></div>
+        <div className='close-button' onClick={(e)=>{setVis(false)}}><b>↪</b></div>
         <div className="menu-button" role="button" onClick={(e) => {props.setPopVis(true)}}><b>Schedule Game</b></div>
         <div className="menu-button" role="button"><b>Join Game</b></div>
         <GameList>
@@ -152,5 +162,5 @@ const LuchtMap = (props) => {
  }
 
 export default GoogleApiWrapper({
-  apiKey: `AIzaSyAJwmnP7sseiJooVbrc6z6APY24zSTPK2w`
+  apiKey: apiKeys.google
 })(LuchtMap)

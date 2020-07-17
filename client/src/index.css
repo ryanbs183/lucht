@@ -19,8 +19,7 @@ code {
   height: 100%;
   overflow: hidden;
   z-index: 1;
-  padding: 1px;
-  background-color: #FFFAF1;
+  background: #FFFAF1;
 }
 
 .side-menu-enter, .side-menu-appear {
@@ -64,7 +63,7 @@ code {
   padding: 10px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 5px;
+  margin-top: 5px;
   height: 2%;
   width: 86%;
   border: 2px solid #568203;
@@ -76,11 +75,13 @@ code {
   background-color: #FFFAF1;
   color: #568203;
   transition: all 400ms;
+  cursor: pointer;
 }
 
 .close-button {
   text-align: right;
   margin: 2px;
+  cursor: pointer;
 }
 
 .header-logo {
@@ -95,7 +96,7 @@ code {
 }
 
 .banner {
-  background-color: #FFFAF1;
+  background: linear-gradient(35deg, #FFFAF1 20%, #568203 20%);
 }
 
 .header {
@@ -117,7 +118,7 @@ code {
 }
 
 .header-link a {
-  color: #568203;
+  color: #FFFAF1;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -142,7 +143,23 @@ code {
 }
 
 .close-button {
+  margin-left: auto;
+  margin-right: 0;
+  font-size: 30px;
+  width: 50%;
+  color: #FFFAF1;
+  background: linear-gradient(35deg, #FFFAF1 40%, #568203 40%);
+  transform: translate(3px,-5px);
+  display: block;
+  z-index: inherit;
+  padding-top: 5px;
+  padding-right: 10px;
+}
 
+.close-button:hover {
+  background: linear-gradient(35deg, #FFFAF1 40%, #1f4201 40%);
+  width: 90%;
+  transition: width 400ms;
 }
 
 .shadow {
