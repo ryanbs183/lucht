@@ -122,7 +122,7 @@ const LuchtMap = (props) => {
          >
           <Marker
             id="user"
-            onClick={(e) => {setVis(true)}}
+//            onClick={(e) => {setVis(true)}}
             name={'User'}
             position={userLoc}
             icon={userIcon}
