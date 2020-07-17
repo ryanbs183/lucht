@@ -28,7 +28,8 @@ app.get('/get/games/:fieldID', (req,res) => {
   console.log("App Served to " + (req.connection.remoteAddress||req.headers['x-forwrded-for']))
 })
 
-app.post('/get/games', (req,res) => {
+app.post('/post/games', (req,res) => {
+  console.log(req.body)
   arr.push(req.body)
   res.send('Data posted!')
 })

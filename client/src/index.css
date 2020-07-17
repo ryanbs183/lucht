@@ -57,7 +57,7 @@ code {
 }
 
 .menu-button {
-  background-color: #306304;
+  background-color: #568203;
   color: #FFFAF1;
   border-radius: 10px;
   text-align: center;
@@ -67,14 +67,14 @@ code {
   margin-bottom: 5px;
   height: 2%;
   width: 86%;
-  border: 2px solid #306304;
+  border: 2px solid #568203;
   text-decoration: none;
   text-transform: uppercase;
 }
 
 .menu-button:hover {
   background-color: #FFFAF1;
-  color: #306304;
+  color: #568203;
   transition: all 400ms;
 }
 
@@ -101,7 +101,7 @@ code {
 .header {
   width: 90%;
   margin: auto;
-  color: #306304;
+  color: #568203;
 }
 
 .header::after {
@@ -117,8 +117,7 @@ code {
 }
 
 .header-link a {
-/*#444;*/
-  color: #306304;
+  color: #568203;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -133,7 +132,7 @@ code {
   width: 0%;
   display: block;
   content: '';
-  background-color: #306304;
+  background-color: #568203;
 }
 
 .header-link a:hover::before {
@@ -145,40 +144,130 @@ code {
 .close-button {
 
 }
-/*
-.game-list {
+
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #0000004D;
+  z-index: 2;
+}
+
+.shadow-enter, .shadow-appear {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #0000004D;
+  z-index: -2;
+  opacity: 0;
+}
+
+.shadow-enter-active, .shadow-appear-active {
+  z-index: 2;
+  opacity: 1;
+  transition: all 100ms;
+}
+
+.shadow-exit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #0000004D;
+  z-index: 2;
+  opacity: 1;
+}
+
+.shadow-exit-active {
+  z-index: -2;
+  opacity: 0;
+  transition: all 100ms;
+}
+
+.popup-menu {
+  height: 200px;
+  width: 300px;
+  position: absolute;
+  top: 40vh;
+  right: 40vw;
+  text-align: center;
+  margin: auto;
+  background-color: #454F31;
+  border-radius: 20px;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.popup-menu-enter, .popup-menu-appear {
+  height: 200px;
+  width: 300px;
+  position: absolute;
+  top: 40vh;
+  right: 40vw;
+  text-align: center;
+  margin: auto;
+  background-color: #454F31;
+  border-radius: 20px;
+  z-index: -1;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.popup-menu-enter-active, .popup-menu-appear-active {
+  z-index: 3;
+  opacity: 1;
+  transition: opacity 100ms;
+}
+
+.popup-menu-exit {
+  height: 200px;
+  width: 300px;
+  position: absolute;
+  top: 40vh;
+  right: 40vw;
+  text-align: center;
+  margin: auto;
+  background-color: #454F31;
+  border-radius: 20px;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.popup-menu-exit-active {
+  z-index: -1;
+  opacity: 0;
+  transition: all 100ms;
+}
+
+.popup-menu .menu-title {
+  position: relative;
+  top: 0px;
+  width: 100%;
+  color: #FFFAF1;
+  padding-top: 30px;
+  font-size: 30px;
+}
+
+.popup-menu form{
+  background-color: #FFFAF1;
+  height: 100%;
+}
+
+.popup-menu form input {
   margin: 10px;
-  height: 10%;
-  background-color: #6C809A;
-  border-radius: 10px;
-  overflow-y: scroll;
-  word-wrap: break-word;
+  float: left;
+  width: 75%;
 }
 
-.game-list-enter, .game-list-appear {
-  margin: 10px;
-  height: 0%;
-  background-color: #6C809A;
-  border-radius: 10px;
-  overflow-y: scroll;
-  word-wrap: break-word;
+.popup-menu .menu-button{
+  height: 20px;
+  width: 80%;
+  position: absolute;
+  left: 6.5%;
+  bottom: 10px;
 }
-
-.game-list-enter-active, .game-list-appear-active {
-  height: 10%;
-  transition: height 400ms;
-}
-
-.game-list-exit {
-  margin: 10px;
-  height: 10%;
-  background-color: #6C809A;
-  border-radius: 10px;
-  overflow-y: scroll;
-  word-wrap: break-word;
-}
-
-.game-list-exit-active {
-  height: 0%;
-  transition: all 400ms;
-}*/

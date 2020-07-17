@@ -5,9 +5,9 @@ import axios from 'axios'
 
 import GameList from './GameList'
 import SideMenu from './SideMenu'
+import PopUpMenu from './PopUpMenu'
 import mapStyle from './style/mapstyle'
 
-const apiKey = 'AIzaSyAJwmnP7sseiJooVbrc6z6APY24zSTPK2w'
 const userIcon = {
   url: 'https://img.icons8.com/material-rounded/24/000000/football.png'
 }
@@ -77,15 +77,20 @@ const LuchtMap = (props) => {
         }
         const service = new google.maps.places.PlacesService(map)
         service.nearbySearch(request, (obj) => {
-          setFields(obj.map((field) => {
-             return(
-             <Marker
-             id={field.id}
-             onClick={openMenu}
-             position={{lat: field.geometry.location.lat(), lng: field.geometry.location.lng()}}
-             icon={fieldIcon}
-             />)}
-           ))
+          if(obj.length === 0){
+            console.log('No fields')
+          }
+          else {
+            setFields(obj.map((field) => {
+              return(
+              <Marker
+              id={field.id}
+              onClick={openMenu}
+              position={{lat: field.geometry.location.lat(), lng: field.geometry.location.lng()}}
+              icon={fieldIcon}
+              />)}
+              ))
+          }
         })
       })
       .catch((err) => {
@@ -94,11 +99,11 @@ const LuchtMap = (props) => {
   }
 
    return (
-     <div style={{height: '90vh', width: '100%'}}>
+     <div style={{height: '100vh', width: '100%'}}>
        <div>
          <Map
            google={props.google}
-           zoom={13}
+           zoom={12}
            style={{width: '100%', height: '100%', zIndex: 0}}
            styles={mapStyle}
            center={userLoc}
@@ -117,7 +122,7 @@ const LuchtMap = (props) => {
          >
           <Marker
             id="user"
-//            onClick={(e) => {setVis(true)}}
+            onClick={(e) => {setVis(true)}}
             name={'User'}
             position={userLoc}
             icon={userIcon}
@@ -135,7 +140,7 @@ const LuchtMap = (props) => {
        <SideMenu
         vis={menuVis}>
         <div className='close-button' onClick={(e)=>{setVis(false)}}><b>X</b></div>
-        <div className="menu-button" role="button"><b>Schedule Game</b></div>
+        <div className="menu-button" role="button" onClick={(e) => {props.setPopVis(true)}}><b>Schedule Game</b></div>
         <div className="menu-button" role="button"><b>Join Game</b></div>
         <GameList>
           {games}
@@ -147,5 +152,5 @@ const LuchtMap = (props) => {
  }
 
 export default GoogleApiWrapper({
-  apiKey: apiKey
+  apiKey: `AIzaSyAJwmnP7sseiJooVbrc6z6APY24zSTPK2w`
 })(LuchtMap)
