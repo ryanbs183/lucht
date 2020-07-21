@@ -3,7 +3,6 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 import { CSSTransition } from 'react-transition-group'
 import axios from 'axios'
 
-import GameList from './GameList'
 import SideMenu from './SideMenu'
 import ScheduleMenu from './menus/ScheduleMenu'
 import mapStyle from './style/mapstyle'
@@ -164,9 +163,6 @@ const LuchtMap = (props) => {
         <div className='close-button' onClick={(e)=>{setVis(false)}}><b>↪</b></div>
         <div className="menu-button" role="button" onClick={(e) => {props.setPopVis(true)}}><b>Schedule Game</b></div>
         <div className="menu-button" role="button"><b>Join Game</b></div>
-        <GameList>
-          {games}
-        </GameList>
        </SideMenu>
        </CSSTransition>
     </div>

@@ -12,7 +12,7 @@ const ScheduleMenu = (props) => {
       <form>
         <ul>
           <h3> WHEN: </h3>
-          <input id="time" type="datetime-local" min={Date.now().toString()} onChange={(e) => {setTime(Date(e.target.value))}}/>
+          <input id="time" type="datetime-local" min={Date.now().toLocaleString()} onChange={(e) => {setTime(Date(e.target.value))}}/>
           <h3> PLAYERS: </h3>
           <input id="players" type="number" placeHolder="Players" min={1} onChange={(e) => {setPlayers(e.target.value)}}/>
           <label className='ref-button'><h3>REFS:</h3>

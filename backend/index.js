@@ -22,46 +22,41 @@ const fieldModel = mongoose.model('FieldModel', fieldSchema)
 // Posts game data and creates a new field if previously undefined
 const postGameToDB = async (gameData) => {
   var doc;
-  await fieldModel.find().where('fieldID').equals(gameData.fieldID).exec((err, dbres) => {
+  await fieldModel.findOne().where('fieldID').equals(gameData.fieldID).exec((err, dbres) => {
     if(err){
       console.error(err)
     }
     else {
-      console.log(dbres)
-    doc = dbres
-    }
-  })
-  if(doc)
-  {
-    fieldModel.update(
-      {fieldID: gameData.fieldID},
-        {$push : { games : {
+      doc = dbres
+      console.log(doc)
+      if(doc){
+        doc.games.push({
+          playersNeeded: gameData.players,
+          ref: gameData.ref,
+          time: gameData.time
+        })
+        doc.save()
+      }
+      else {
+        fieldModel.create({
+          fieldID: gameData.fieldID,
+          location: gameData.location,
+          games: [{
             playersNeeded: gameData.players,
             ref: gameData.ref,
             time: gameData.time
-            }
+          }]
+        }, (err) => {
+          if(err) {
+            console.error(err)
           }
-        }
-      )
-    }
-  else {
-    fieldModel.create({
-      fieldID: gameData.fieldID,
-      location: gameData.location,
-      games: [{
-        playersNeeded: gameData.players,
-        ref: gameData.ref,
-        time: gameData.time
-      }]
-    }, (err) => {
-      if(err) {
-        console.error(err)
+          else {
+            console.log(`Game Data saved for game at Location: (lat: ${gameData.location.lat}, lng: ${gameData.location.lng}), and Time: ${gameData.time.toLocaleString()}`)
+          }
+        })
       }
-      else {
-        console.log(`Game Data saved for game at Location: (lat: ${gameData.location.lat}, lng: ${gameData.location.lng}), and Time: ${gameData.time.toLocaleString()}`)
-      }
-    })
     }
+  })
 }
 
 // Web server setup
@@ -79,14 +74,14 @@ app.get('/', (req,res) => {
 
 app.get('/get/games/:id', (req,res) => {
   var fieldData = fieldModel.find().where('fieldID').equals(req.params.id).exec((err, dbres) => {
-    console.log(dbres)
+    //console.log(dbres)
     res.send(dbres)
   })
   console.log("Field Data Served to " + (req.connection.remoteAddress||req.headers['x-forwrded-for']))
 })
 
 app.post('/post/game/', (req,res) => {
-  console.log(req.body)
+  //console.log(req.body)
   postGameToDB(req.body)
   res.send('Data posted!')
 })
