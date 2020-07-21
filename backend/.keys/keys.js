@@ -1,0 +1,1 @@
+exports.mongo = `mongodb+srv://lucht:mswiYgT4K7X7BO9t@cluster0.b6ubs.gcp.mongodb.net/Cluster0?retryWrites=true&w=majority`

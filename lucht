@@ -1,0 +1,6 @@
+#!/bin/bash
+# Start Lucht production build
+
+echo "LUCHT : Find your game ..."
+cat art.txt
+(cd client && npm run build)&&(cd backend && npm run start-server)

@@ -16,7 +16,7 @@ code {
   position: absolute;
   right: 0px;
   width: 12%;
-  height: 100%;
+  height: 91%;
   overflow: hidden;
   z-index: 1;
   background: #FFFAF1;
@@ -26,7 +26,7 @@ code {
   position: absolute;
   right: 0px;
   width: 0%;
-  height: 100%;
+  height: 91%;
   overflow: hidden;
   z-index: 1;
   padding: 1px;
@@ -42,7 +42,7 @@ code {
   position: absolute;
   right: 0px;
   width: 12%;
-  height: 100%;
+  height: 91%;
   overflow: hidden;
   z-index: 1;
   padding: 1px;
@@ -69,6 +69,7 @@ code {
   border: 2px solid #568203;
   text-decoration: none;
   text-transform: uppercase;
+  font-size: 95%;
 }
 
 .menu-button:hover {
@@ -207,8 +208,8 @@ code {
 }
 
 .popup-menu {
-  height: 200px;
-  width: 300px;
+  height: 425px;
+  width: 350px;
   position: absolute;
   top: 40vh;
   right: 40vw;
@@ -222,8 +223,8 @@ code {
 }
 
 .popup-menu-enter, .popup-menu-appear {
-  height: 200px;
-  width: 300px;
+  height: 425px;
+  width: 350px;
   position: absolute;
   top: 40vh;
   right: 40vw;
@@ -243,8 +244,8 @@ code {
 }
 
 .popup-menu-exit {
-  height: 200px;
-  width: 300px;
+  height: 425px;
+  width: 350px;
   position: absolute;
   top: 40vh;
   right: 40vw;
@@ -264,29 +265,52 @@ code {
 }
 
 .popup-menu .menu-title {
-  position: relative;
-  top: 0px;
   width: 100%;
   color: #FFFAF1;
   padding-top: 30px;
+  padding-bottom: 20px;
   font-size: 30px;
+  font-weight: bolder;
 }
 
 .popup-menu form{
   background-color: #FFFAF1;
   height: 100%;
+  padding-top: 5px;
 }
 
-.popup-menu form input {
-  margin: 10px;
-  float: left;
-  width: 75%;
+.popup-menu form #time {
+  width: 80%;
+  height: 40px;
+  margin-top: 2px;
+  margin-right: 55px;
 }
 
-.popup-menu .menu-button{
+.popup-menu form #players {
+  width: 80%;
+  height: 40px;
+  margin-top: 2px;
+  margin-right: 55px;
+}
+
+.popup-menu h3 {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.popup-menu .menu-button {
   height: 20px;
   width: 80%;
   position: absolute;
   left: 6.5%;
   bottom: 10px;
+}
+
+.ref-button #ref {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  margin-right: 12%;
+  margin-bottom: 20px;
 }

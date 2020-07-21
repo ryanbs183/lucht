@@ -5,7 +5,7 @@ import About from './components/abt/About'
 import GitHub from './components/git/GitHub'
 import Header from './components/head/Header'
 import LuchtMap from './components/map/LuchtMap'
-import PopUpMenu from './components/map/PopUpMenu'
+import AboutPage from './info/AboutPage'
 
 const Lucht = () => {
   const [popupVis, setPopVis] = useState(false)
@@ -30,6 +30,7 @@ const Lucht = () => {
       >
         <div className="shadow" onClick={(e) => {setPopVis(false)}}></div>
       </CSSTransition>
+      <AboutPage />
     </div>
   );
 }

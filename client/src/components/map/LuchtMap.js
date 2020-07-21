@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import GameList from './GameList'
 import SideMenu from './SideMenu'
-import PopUpMenu from './PopUpMenu'
+import ScheduleMenu from './menus/ScheduleMenu'
 import mapStyle from './style/mapstyle'
 
 import apiKeys from './.APIKeys/api_keys'
@@ -17,10 +17,11 @@ const fieldIcon = {
 }
 
 const LuchtMap = (props) => {
-
+  const [currFieldLoc, setCurrFieldLoc] = useState(null)
+  const [currFieldID, setCurrFieldID] = useState(null)
   const [userLoc, setUserLoc] = useState(null)  //stores user geolocation
   const [menuVis, setVis] = useState(false)     //stores as to whether the slideout menu should be visible
-  const [fields, setFields] = useState(null)    //stores the field data
+  const [fields, setFields] = useState(null)    //stores the field map data
   const [games, setGames] = useState(null)      //stores game data
 
   //returns a Promise to get the user's geolocation
@@ -32,7 +33,13 @@ const LuchtMap = (props) => {
   }
   //returns a Promise to send an AJAX request to the Express server to GET the relevant game data
   const getGames = (e) => {
-      return axios.get(`http://localhost:5000/get/games/${e.id}`)
+    setCurrFieldLoc({lat: e.position.lat, lng: e.position.lng})
+    setCurrFieldID(e.id)
+    console.log(e.position)
+    return axios.get(`http://localhost:5000/get/games/${e.id}`)
+  }
+  const postGame = (e, gameData) => {
+    return axios.post(`http://localhost:5000/post/game`, gameData)
   }
   //sets the menuVis to true and sorts the game data to only show games at each field
   const openMenu = (e) => {
@@ -60,7 +67,7 @@ const LuchtMap = (props) => {
   //gets the fields near the user and sets the fields variable to that data
   const fetchPlaces = (mapProps, map) => {
     console.log('Running fetchPlaces')
-    getUserLoc({enableHighAccuracy: true, timeout: 10000})
+    getUserLoc({enableHighAccuracy: true, timeout: 15000})
       .then((res) => {
         console.log('Setting userLoc')
         let loc = {
@@ -74,7 +81,7 @@ const LuchtMap = (props) => {
           location: loc,
           radius: 8000,
           openNow: true,
-          name: ['soccer']
+          name: ['sports']
         }
         const service = new google.maps.places.PlacesService(map)
         service.nearbySearch(request, (obj) => {
@@ -100,12 +107,12 @@ const LuchtMap = (props) => {
   }
 
    return (
-     <div style={{height: '100vh', width: '100%'}}>
+     <div style={{height: '91vh', width: '100%'}}>
        <div>
          <Map
            google={props.google}
            zoom={12}
-           style={{width: '100%', height: '100%', zIndex: 0}}
+           style={{width: '100%', height: '91%', zIndex: 0}}
            styles={mapStyle}
            center={userLoc}
            onReady={fetchPlaces}
@@ -137,7 +144,12 @@ const LuchtMap = (props) => {
            unmountOnExit
            appear={true}
          >
-           <PopUpMenu/>
+           <ScheduleMenu
+            postGame={postGame}
+            loc={currFieldLoc}
+            fieldID={currFieldID}
+            setPopVis={props.setPopVis}
+           />
          </CSSTransition>
        </div>
        <CSSTransition
