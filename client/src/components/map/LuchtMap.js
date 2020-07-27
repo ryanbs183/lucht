@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 import { CSSTransition } from 'react-transition-group'
 import axios from 'axios'
 
 import SideMenu from './SideMenu'
 import ScheduleMenu from './menus/ScheduleMenu'
+import JoinMenu from './menus/JoinMenu'
 import mapStyle from './style/mapstyle'
 
 import apiKeys from './.APIKeys/api_keys'
@@ -34,39 +35,39 @@ const LuchtMap = (props) => {
   const getGames = (e) => {
     setCurrFieldLoc({lat: e.position.lat, lng: e.position.lng})
     setCurrFieldID(e.id)
-    console.log(e.position)
-    return axios.get(`http://localhost:5000/get/games/${e.id}`)
+    return axios.get(`http://ec2-3-21-206-37.us-east-2.compute.amazonaws.com:5000/get/games/${e.id}`)
   }
   const postGame = (e, gameData) => {
-    return axios.post(`http://localhost:5000/post/game`, gameData)
+    return axios.post(`http://ec2-3-21-206-37.us-east-2.compute.amazonaws.com:5000/post/game`, gameData)
+  }
+  const joinGame = (e, joinData) => {
+    return axios.post('http://ec2-3-21-206-37.us-east-2.compute.amazonaws.com:5000/join/game', joinData)
   }
   //sets the menuVis to true and sorts the game data to only show games at each field
   const openMenu = (e) => {
     if(menuVis === true){
-      console.log('Wipe Menu')
+      //console.log('Wipe Menu')
       setVis(false)
       setTimeout(() => {
         setVis(true)
       }, 500)
     }
     else if(menuVis === false){
-      console.log('No wipe')
+      //console.log('No wipe')
       setVis(true)
     }
     getGames(e)
      .then((res) => {
-       setGames(res.data.map((item) => (
-           (<li>
-            Id: {item.fieldID}
-           </li>)
-         )
-       ))
+       console.log(res.data)
+       if(res.data[0]){
+        setGames(res.data[0])
+       }
      })
   }
   //gets the fields near the user and sets the fields variable to that data
   const fetchPlaces = (mapProps, map) => {
     console.log('Running fetchPlaces')
-    getUserLoc({enableHighAccuracy: true, timeout: 15000})
+    getUserLoc({enableHighAccuracy: true, timeout: 10000})
       .then((res) => {
         console.log('Setting userLoc')
         let loc = {
@@ -129,7 +130,7 @@ const LuchtMap = (props) => {
          >
           <Marker
             id="user"
-//            onClick={(e) => {setVis(true)}}
+//            onClick={(e) => {setVis(true)}}   // uncomment to test side menu CSS without geolocation
             name={'User'}
             position={userLoc}
             icon={userIcon}
@@ -137,7 +138,7 @@ const LuchtMap = (props) => {
            {fields}
          </Map>
          <CSSTransition
-           in={props.popVis}
+           in={props.popScheduleVis}
            timeout={400}
            classNames="popup-menu"
            unmountOnExit
@@ -147,7 +148,20 @@ const LuchtMap = (props) => {
             postGame={postGame}
             loc={currFieldLoc}
             fieldID={currFieldID}
-            setPopVis={props.setPopVis}
+            setPopVis={props.setPopScheduleVis}
+           />
+         </CSSTransition>
+         <CSSTransition
+           in={props.popJoinVis}
+           timeout={400}
+           classNames="popup-menu"
+           unmountOnExit
+           appear={true}
+         >
+           <JoinMenu
+            joinGame={joinGame}
+            field={games}
+            setPopVis={props.setPopJoinVis}
            />
          </CSSTransition>
        </div>
@@ -161,8 +175,8 @@ const LuchtMap = (props) => {
        <SideMenu
         vis={menuVis}>
         <div className='close-button' onClick={(e)=>{setVis(false)}}><b>↪</b></div>
-        <div className="menu-button" role="button" onClick={(e) => {props.setPopVis(true)}}><b>Schedule Game</b></div>
-        <div className="menu-button" role="button"><b>Join Game</b></div>
+        <div className="menu-button" role="button" onClick={(e) => {props.setPopScheduleVis(true)}}><b>Schedule Game</b></div>
+        <div className="menu-button" role="button" onClick={(e) => {props.setPopJoinVis(true)}}><b>Join Game</b></div>
        </SideMenu>
        </CSSTransition>
     </div>

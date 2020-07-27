@@ -314,3 +314,26 @@ code {
   margin-right: 12%;
   margin-bottom: 20px;
 }
+
+.join-game {
+  padding-left: 6.5%;
+  height: 70%;
+  overflow: scroll;
+}
+
+.join-list {
+  height: 80%;
+  width: 80%;
+  background-color: #FFFAF1;
+  border-radius: 20px;
+  list-style: none;
+  text-align: left;
+}
+
+.join-list li {
+  margin-left: 0%;
+}
+
+.game-item {
+  cursor: pointer;
+}

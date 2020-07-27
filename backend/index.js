@@ -20,15 +20,14 @@ const fieldSchema = new schema({
 const fieldModel = mongoose.model('FieldModel', fieldSchema)
 
 // Posts game data and creates a new field if previously undefined
-const postGameToDB = async (gameData) => {
+const postGameToDB = (gameData) => {
   var doc;
-  await fieldModel.findOne().where('fieldID').equals(gameData.fieldID).exec((err, dbres) => {
+  fieldModel.findOne().where('fieldID').equals(gameData.fieldID).exec((err, dbres) => {
     if(err){
       console.error(err)
     }
     else {
       doc = dbres
-      console.log(doc)
       if(doc){
         doc.games.push({
           playersNeeded: gameData.players,
@@ -51,9 +50,33 @@ const postGameToDB = async (gameData) => {
             console.error(err)
           }
           else {
-            console.log(`Game Data saved for game at Location: (lat: ${gameData.location.lat}, lng: ${gameData.location.lng}), and Time: ${gameData.time.toLocaleString()}`)
+            console.log(`Field Data created for game at Location: (lat: ${gameData.location.lat}, lng: ${gameData.location.lng}), and Time: ${gameData.fieldID}`)
           }
         })
+      }
+    }
+  })
+}
+
+const joinGame = (joinData) => {
+  console.log(joinData)
+  var doc;
+  fieldModel.findOne().where('fieldID').equals(joinData.fieldID).exec((err, dbres) => {
+    if(err){
+      console.error(err)
+    }
+    else{
+      doc = dbres
+      if(doc){
+        for(let i = 0; i < doc.games.length; i++) {
+          if(Date(Date.parse(doc.games[i].time)) === Date(Date.parse(joinData.time)))
+          {
+            console.log(Number(doc.games[i].playersNeeded) - 1)
+            doc.games[i].playersNeeded = `${Number(doc.games[i].playersNeeded) - 1}`
+          }
+        }
+        doc.markModified('games')
+        doc.save()
       }
     }
   })
@@ -62,16 +85,11 @@ const postGameToDB = async (gameData) => {
 // Web server setup
 app.use(cors())
 app.use(bodyparser.json())
-app.use(express.static(path.join(__dirname, '../client/build')))
 app.listen(5000, () => {
   console.log('Backend Server running on port 5000');
 })
 
 // Web Routing
-app.get('/', (req,res) => {
-  res.send(express.static(path.join(__dirname, '../client/build/index.html')))
-})
-
 app.get('/get/games/:id', (req,res) => {
   var fieldData = fieldModel.find().where('fieldID').equals(req.params.id).exec((err, dbres) => {
     //console.log(dbres)
@@ -81,7 +99,11 @@ app.get('/get/games/:id', (req,res) => {
 })
 
 app.post('/post/game/', (req,res) => {
-  //console.log(req.body)
   postGameToDB(req.body)
   res.send('Data posted!')
+})
+
+app.post('/join/game', (req,res) => {
+  joinGame(req.body)
+  res.send('Game joined')
 })

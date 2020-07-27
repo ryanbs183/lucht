@@ -8,7 +8,8 @@ import LuchtMap from './components/map/LuchtMap'
 import AboutPage from './info/AboutPage'
 
 const Lucht = () => {
-  const [popupVis, setPopVis] = useState(false)
+  const [popupScheduleVis, setPopScheduleVis] = useState(false)
+  const [popupJoinVis, setPopJoinVis] = useState(false)
   return (
     <div className="Pyckup">
       <Header>
@@ -18,17 +19,22 @@ const Lucht = () => {
       </Header>
       <LuchtMap
         apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
-        setPopVis={setPopVis}
-        popVis={popupVis}
+        setPopScheduleVis={setPopScheduleVis}
+        popScheduleVis={popupScheduleVis}
+        popJoinVis={popupJoinVis}
+        setPopJoinVis={setPopJoinVis}
       />
       <CSSTransition
-        in={popupVis}
+        in={popupScheduleVis||popupJoinVis}
         timeout={400}
         classNames="shadow"
         unmountOnExit
         appear={true}
       >
-        <div className="shadow" onClick={(e) => {setPopVis(false)}}></div>
+        <div className="shadow" onClick={(e) => {
+          setPopScheduleVis(false)
+          setPopJoinVis(false)
+        }}></div>
       </CSSTransition>
       <AboutPage />
     </div>
