@@ -1,7 +1,19 @@
 const mapStyle = [
     {
-        "featureType": "administrative",
-        "elementType": "labels",
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#7d7d7d"
+            },
+            {
+                "lightness": "0"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.country",
+        "elementType": "all",
         "stylers": [
             {
                 "visibility": "off"
@@ -9,20 +21,71 @@ const mapStyle = [
         ]
     },
     {
-        "featureType": "administrative",
-        "elementType": "labels.text.fill",
+        "featureType": "administrative.province",
+        "elementType": "all",
         "stylers": [
             {
-                "color": "#444444"
+                "visibility": "off"
             }
         ]
     },
     {
-        "featureType": "landscape",
+        "featureType": "administrative.locality",
         "elementType": "all",
         "stylers": [
             {
-                "color": "#e9e6de"
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.neighborhood",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.land_parcel",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#e1e0d2"
+            },
+            {
+                "lightness": "49"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.natural",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#f1f4ef"
+            },
+            {
+                "visibility": "on"
             }
         ]
     },
@@ -31,7 +94,10 @@ const mapStyle = [
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "simplified"
+                "gamma": "1.00"
+            },
+            {
+                "visibility": "off"
             }
         ]
     },
@@ -76,7 +142,19 @@ const mapStyle = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#95da59"
+                "visibility": "simplified"
+            },
+            {
+                "color": "#538c3b"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
             }
         ]
     },
@@ -103,33 +181,15 @@ const mapStyle = [
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [
-            {
-                "saturation": -100
+                "visibility": "simplified"
             },
             {
-                "lightness": 45
+                "color": "#538c3b"
             }
         ]
     },
     {
         "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
         "elementType": "all",
         "stylers": [
             {
@@ -138,8 +198,29 @@ const mapStyle = [
         ]
     },
     {
-        "featureType": "road.highway",
+        "featureType": "road",
         "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffc84a"
+            },
+            {
+                "lightness": "60"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "labels.text",
         "stylers": [
             {
                 "visibility": "off"
@@ -148,7 +229,7 @@ const mapStyle = [
     },
     {
         "featureType": "road.highway.controlled_access",
-        "elementType": "labels",
+        "elementType": "all",
         "stylers": [
             {
                 "visibility": "off"
@@ -160,30 +241,21 @@ const mapStyle = [
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
                 "visibility": "off"
             }
         ]
     },
     {
-        "featureType": "road.local",
+        "featureType": "transit.station.airport",
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "simplified"
+                "visibility": "on"
             }
         ]
     },
     {
-        "featureType": "road.local",
+        "featureType": "transit.station.airport",
         "elementType": "labels",
         "stylers": [
             {
@@ -192,7 +264,16 @@ const mapStyle = [
         ]
     },
     {
-        "featureType": "transit",
+        "featureType": "transit.station.bus",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit.station.rail",
         "elementType": "all",
         "stylers": [
             {
@@ -205,10 +286,10 @@ const mapStyle = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#7ddde6"
+                "visibility": "simplified"
             },
             {
-                "visibility": "on"
+                "color": "#b5d3e7"
             }
         ]
     }

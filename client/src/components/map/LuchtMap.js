@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 import { CSSTransition } from 'react-transition-group'
 import axios from 'axios'
+import https from 'https'
 
 import SideMenu from './SideMenu'
 import ScheduleMenu from './menus/ScheduleMenu'
@@ -9,14 +10,20 @@ import JoinMenu from './menus/JoinMenu'
 import mapStyle from './style/mapstyle'
 
 import apiKeys from './.APIKeys/api_keys'
-const userIcon = {
-  url: 'https://img.icons8.com/material-rounded/24/000000/football.png'
-}
-const fieldIcon = {
-  url:'https://img.icons8.com/material-rounded/24/000000/football2.png'
-}
+
+const agent = new https.Agent({
+  rejectUnauthorized: false
+})
 
 const LuchtMap = (props) => {
+  const userIcon = {
+    url: "https://img.icons8.com/color/48/000000/green-lantern.png",
+    scaledSize: new props.google.maps.Size(25,25)
+  }
+  const fieldIcon = {
+    url: "https://img.icons8.com/ios-filled/50/000000/multicultural-people.png",
+    scaledSize: new props.google.maps.Size(30,30)
+  }
   const [currFieldLoc, setCurrFieldLoc] = useState(null)
   const [currFieldID, setCurrFieldID] = useState(null)
   const [userLoc, setUserLoc] = useState(null)  //stores user geolocation
@@ -35,13 +42,13 @@ const LuchtMap = (props) => {
   const getGames = (e) => {
     setCurrFieldLoc({lat: e.position.lat, lng: e.position.lng})
     setCurrFieldID(e.id)
-    return axios.get(`http://ec2-3-21-206-37.us-east-2.compute.amazonaws.com:5000/get/games/${e.id}`)
+    return axios.get(`http://172.31.23.60:5000/get/games/${e.id}`)
   }
   const postGame = (e, gameData) => {
-    return axios.post(`http://ec2-3-21-206-37.us-east-2.compute.amazonaws.com:5000/post/game`, gameData)
+    return axios.post(`http://172.31.23.60:5000/post/game`, gameData)
   }
   const joinGame = (e, joinData) => {
-    return axios.post('http://ec2-3-21-206-37.us-east-2.compute.amazonaws.com:5000/join/game', joinData)
+    return axios.post('http://172.31.23.60:5000/join/game', joinData)
   }
   //sets the menuVis to true and sorts the game data to only show games at each field
   const openMenu = (e) => {
@@ -67,7 +74,7 @@ const LuchtMap = (props) => {
   //gets the fields near the user and sets the fields variable to that data
   const fetchPlaces = (mapProps, map) => {
     console.log('Running fetchPlaces')
-    getUserLoc({enableHighAccuracy: true, timeout: 10000})
+    getUserLoc({enableHighAccuracy: true, timeout: 15000})
       .then((res) => {
         console.log('Setting userLoc')
         let loc = {
@@ -81,7 +88,7 @@ const LuchtMap = (props) => {
           location: loc,
           radius: 8000,
           openNow: true,
-          name: ['sports']
+          name: ['basketball', 'soccer']
         }
         const service = new google.maps.places.PlacesService(map)
         service.nearbySearch(request, (obj) => {
@@ -102,6 +109,7 @@ const LuchtMap = (props) => {
         })
       })
       .catch((err) => {
+        
         console.log(err)
       })
   }
@@ -112,7 +120,7 @@ const LuchtMap = (props) => {
          <Map
            google={props.google}
            zoom={12}
-           style={{width: '100%', height: '91%', zIndex: 0}}
+           style={{width: '100%', height: '92.5%', zIndex: 0}}
            styles={mapStyle}
            center={userLoc}
            onReady={fetchPlaces}

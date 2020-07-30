@@ -1,3 +1,9 @@
+:root {
+  --lucht-green: #538C3B;
+  --lucht-white: #F1F4EF;
+  --lucht-black: black;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--lucht-white);
 }
 
 code {
@@ -19,7 +26,7 @@ code {
   height: 91%;
   overflow: hidden;
   z-index: 1;
-  background: #FFFAF1;
+  background: var(--lucht-white);
 }
 
 .side-menu-enter, .side-menu-appear {
@@ -30,12 +37,12 @@ code {
   overflow: hidden;
   z-index: 1;
   padding: 1px;
-  background-color: #FFFAF1;
+  background-color: var(--lucht-white);
 }
 
 .side-menu-enter-active, .side-menu-appear-active {
   width: 12%;
-  transition: width 400ms;
+  transition: width 700ms;
 }
 
 .side-menu-exit {
@@ -46,18 +53,18 @@ code {
   overflow: hidden;
   z-index: 1;
   padding: 1px;
-  background-color: #FFFAF1;
+  background-color: var(--lucht-white);
 }
 
 .side-menu-exit-active {
   width: 0%;
   right: -40px;
-  transition: all 400ms;
+  transition: all 700ms;
 }
 
 .menu-button {
-  background-color: #568203;
-  color: #FFFAF1;
+  background-color: var(--lucht-green);
+  color: var(--lucht-white);
   border-radius: 10px;
   text-align: center;
   padding: 10px;
@@ -66,22 +73,18 @@ code {
   margin-top: 5px;
   height: 2%;
   width: 86%;
-  border: 2px solid #568203;
+  border: 2px solid var(--lucht-green);
   text-decoration: none;
   text-transform: uppercase;
   font-size: 95%;
+  overflow: hidden;
+  transition: all 400ms;
 }
 
 .menu-button:hover {
-  background-color: #FFFAF1;
-  color: #568203;
-  transition: all 400ms;
-  cursor: pointer;
-}
-
-.close-button {
-  text-align: right;
-  margin: 2px;
+  background-color: var(--lucht-black);
+  border: 2px solid var(--lucht-black);
+  color: var(--lucht-white);
   cursor: pointer;
 }
 
@@ -97,13 +100,13 @@ code {
 }
 
 .banner {
-  background: linear-gradient(35deg, #FFFAF1 20%, #568203 20%);
+  background: linear-gradient(35deg, var(--lucht-white) 20%, var(--lucht-green) 20%);
 }
 
 .header {
   width: 90%;
   margin: auto;
-  color: #568203;
+  color: var(--lucht-green);
 }
 
 .header::after {
@@ -119,14 +122,14 @@ code {
 }
 
 .header-link a {
-  color: #FFFAF1;
+  color: var(--lucht-white);
   text-decoration: none;
   text-transform: uppercase;
+  transition: all 600ms;
 }
 
 .header-link a:hover {
-  color: #1f4201;
-  transition: color 200ms;
+  color: var(--lucht-black);
 }
 
 .header-link a::before {
@@ -134,33 +137,36 @@ code {
   width: 0%;
   display: block;
   content: '';
-  background-color: #568203;
+  background-color: var(--lucht-green);
+  transition: all 600ms;
 }
 
 .header-link a:hover::before {
-  background-color: #1f4201;
+  background-color: var(--lucht-black);
   width: 100%;
-  transition: all 200ms;
 }
 
 .close-button {
+  text-align: right;
+  margin: 2px;
+  cursor: pointer;
   margin-left: auto;
   margin-right: 0;
   font-size: 30px;
   width: 50%;
-  color: #FFFAF1;
-  background: linear-gradient(35deg, #FFFAF1 40%, #568203 40%);
+  color: var(--lucht-white);
+  background: linear-gradient(35deg, var(--lucht-white) 40%, var(--lucht-green) 40%);
   transform: translate(3px,-5px);
   display: block;
   z-index: inherit;
   padding-top: 5px;
   padding-right: 10px;
+  transition: all 600ms;
 }
 
 .close-button:hover {
-  background: linear-gradient(35deg, #FFFAF1 40%, #1f4201 40%);
+  background: linear-gradient(35deg, var(--lucht-white) 40%, var(--lucht-black) 40%);
   width: 90%;
-  transition: width 400ms;
 }
 
 .shadow {
@@ -215,7 +221,7 @@ code {
   right: 40vw;
   text-align: center;
   margin: auto;
-  background-color: #454F31;
+  background-color: var(--lucht-green);
   border-radius: 20px;
   z-index: 3;
   overflow: hidden;
@@ -230,7 +236,7 @@ code {
   right: 40vw;
   text-align: center;
   margin: auto;
-  background-color: #454F31;
+  background-color: var(--lucht-green);
   border-radius: 20px;
   z-index: -1;
   overflow: hidden;
@@ -251,7 +257,7 @@ code {
   right: 40vw;
   text-align: center;
   margin: auto;
-  background-color: #454F31;
+  background-color: var(--lucht-green);
   border-radius: 20px;
   z-index: -1;
   overflow: hidden;
@@ -266,7 +272,7 @@ code {
 
 .popup-menu .menu-title {
   width: 100%;
-  color: #FFFAF1;
+  color: var(--lucht-white);
   padding-top: 30px;
   padding-bottom: 20px;
   font-size: 30px;
@@ -274,7 +280,7 @@ code {
 }
 
 .popup-menu form{
-  background-color: #FFFAF1;
+  background-color: var(--lucht-white);
   height: 100%;
   padding-top: 5px;
 }
@@ -324,7 +330,7 @@ code {
 .join-list {
   height: 80%;
   width: 80%;
-  background-color: #FFFAF1;
+  background-color: var(--lucht-white);
   border-radius: 20px;
   list-style: none;
   text-align: left;
@@ -336,4 +342,28 @@ code {
 
 .game-item {
   cursor: pointer;
+}
+
+.info-page {
+  text-align: center;
+  margin: auto;
+  width: 90vw;
+  height: 90vh;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 3em rgba(0,0,0,0.15);
+  background-color: var(--lucht-white);
+}
+
+.accent-logo {
+  height: 10vh;
+  float: left;
+  transition: height 1.2s, transform 1.2s;
+}
+
+.accent-logo:hover {
+  height: 11vh;
+  transform: rotate(135deg);
 }
