@@ -17,12 +17,12 @@ const agent = new https.Agent({
 
 const LuchtMap = (props) => {
   const userIcon = {
-    url: "https://img.icons8.com/color/48/000000/green-lantern.png",
-    scaledSize: new props.google.maps.Size(25,25)
+    url: "https://i.imgur.com/bjy7W5t.png",
+    scaledSize: new props.google.maps.Size(20,20)
   }
   const fieldIcon = {
-    url: "https://img.icons8.com/ios-filled/50/000000/multicultural-people.png",
-    scaledSize: new props.google.maps.Size(30,30)
+    url: "https://i.imgur.com/qaUyOV1.png",
+    scaledSize: new props.google.maps.Size(25,20)
   }
   const [currFieldLoc, setCurrFieldLoc] = useState(null)
   const [currFieldID, setCurrFieldID] = useState(null)
@@ -42,13 +42,13 @@ const LuchtMap = (props) => {
   const getGames = (e) => {
     setCurrFieldLoc({lat: e.position.lat, lng: e.position.lng})
     setCurrFieldID(e.id)
-    return axios.get(`http://172.31.23.60:5000/get/games/${e.id}`)
+    return axios.get(`https://luchtapi.com/get/games/${e.id}`)
   }
   const postGame = (e, gameData) => {
-    return axios.post(`http://172.31.23.60:5000/post/game`, gameData)
+    return axios.post(`https://luchtapi.com/post/game`, gameData)
   }
   const joinGame = (e, joinData) => {
-    return axios.post('http://172.31.23.60:5000/join/game', joinData)
+    return axios.post('https://luchtapi.com/join/game', joinData)
   }
   //sets the menuVis to true and sorts the game data to only show games at each field
   const openMenu = (e) => {
@@ -120,7 +120,7 @@ const LuchtMap = (props) => {
          <Map
            google={props.google}
            zoom={12}
-           style={{width: '100%', height: '92.5%', zIndex: 0}}
+           style={{width: '100%', height: '92.5%'}}
            styles={mapStyle}
            center={userLoc}
            onReady={fetchPlaces}
@@ -185,6 +185,7 @@ const LuchtMap = (props) => {
         <div className='close-button' onClick={(e)=>{setVis(false)}}><b>↪</b></div>
         <div className="menu-button" role="button" onClick={(e) => {props.setPopScheduleVis(true)}}><b>Schedule Game</b></div>
         <div className="menu-button" role="button" onClick={(e) => {props.setPopJoinVis(true)}}><b>Join Game</b></div>
+        <a href='#'><img src='https://i.imgur.com/kqXQLdO.png' id='ref-info'/></a>
        </SideMenu>
        </CSSTransition>
     </div>

@@ -360,10 +360,16 @@ code {
 .accent-logo {
   height: 10vh;
   float: left;
-  transition: height 1.2s, transform 1.2s;
+  transition: height 1.2s;
 }
 
 .accent-logo:hover {
   height: 11vh;
-  transform: rotate(135deg);
+}
+
+#ref-info {
+  height: 2vh;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }

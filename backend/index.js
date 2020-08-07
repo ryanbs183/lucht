@@ -2,7 +2,9 @@ const express = require('express'),
  cors = require('cors'),
  bodyparser = require('body-parser'),
  path = require('path'),
- key = require('./.keys/keys')
+ key = require('./.keys/keys'),
+ os = require('os'),
+ cluster = require('cluster'),
  mongoose = require('mongoose'),
  mongodb = key.mongo,
  app = express()
@@ -82,28 +84,36 @@ const joinGame = (joinData) => {
   })
 }
 
-// Web server setup
-app.use(cors())
-app.use(bodyparser.json())
-app.listen(5000, () => {
-  console.log('Backend Server running on port 5000');
-})
-
-// Web Routing
-app.get('/get/games/:id', (req,res) => {
-  var fieldData = fieldModel.find().where('fieldID').equals(req.params.id).exec((err, dbres) => {
-    //console.log(dbres)
-    res.send(dbres)
+if(cluster.isMaster){
+  //Master process
+  console.log(`Utilizing ${os.cpus().length} CPU's`)
+  os.cpus().map((c) => {
+    cluster.fork()
   })
-  console.log("Field Data Served to " + (req.connection.remoteAddress||req.headers['x-forwrded-for']))
-})
+} else {
+  // Web server setup
+  app.use(cors())
+  app.use(bodyparser.json())
+  app.listen(5000, () => {
+    console.log(`Server process: ${process.pid} running on port 5000`);
+  })
 
-app.post('/post/game/', (req,res) => {
-  postGameToDB(req.body)
-  res.send('Data posted!')
-})
+  // Web Routing
+  app.get('/get/games/:id', (req,res) => {
+    var fieldData = fieldModel.find().where('fieldID').equals(req.params.id).exec((err, dbres) => {
+      //console.log(dbres)
+      res.send(dbres)
+    })
+    console.log("Field Data Served to " + (req.connection.remoteAddress||req.headers['x-forwrded-for']))
+  })
 
-app.post('/join/game', (req,res) => {
-  joinGame(req.body)
-  res.send('Game joined')
-})
+  app.post('/post/game/', (req,res) => {
+    postGameToDB(req.body)
+    res.send('Data posted!')
+  })
+
+  app.post('/join/game', (req,res) => {
+    joinGame(req.body)
+    res.send('Game joined')
+  })
+}
